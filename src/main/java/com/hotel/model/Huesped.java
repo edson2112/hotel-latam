@@ -20,4 +20,39 @@ public class Huesped {
 		this.telefono = telefono;
 		this.reservaId = reservaId;
 	}
+
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public String getApellido() {
+		return this.apellido;
+	}
+
+	public Date getFechaNacimento() {
+		return this.fechaNacimiento;
+	}
+
+	public String getNacionalidad() {
+		return this.nacionalidad;
+	}
+
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public int getIdReserva() {
+		return reservaId;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(
+				"id: %d, nombre: %s, apellido: %s",
+				this.id, this.nombre, this.apellido);
+	}
 }
