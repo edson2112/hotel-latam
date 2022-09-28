@@ -17,6 +17,13 @@ public class Reserva {
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 	}
+	
+	public Reserva(Date fechaEntrada, Date fechaSalida, Float valor, String formaPago) {
+		this.valor = valor;
+		this.formaPago = formaPago;
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = fechaSalida;
+	}
 
 
 	public Date getFechaEntrada() {
