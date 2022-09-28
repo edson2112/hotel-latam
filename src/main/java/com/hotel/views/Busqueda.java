@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.hotel.controller.HuespedController;
 import com.hotel.controller.ReservaController;
+import com.hotel.model.Huesped;
 import com.hotel.model.Reserva;
 
 import javax.swing.JTable;
@@ -280,14 +281,16 @@ public class Busqueda extends JFrame {
 	}
 	
 	public void cargarHuesped() {
-		List<Reserva> contenido = huespedController.listar();
-		contenido.forEach(reserva ->{
+		List<Huesped> contenido = huespedController.listar();
+		contenido.forEach(huesped ->{
         	modelo.addRow(new Object[] {
-        			""+reserva.getId(),
-        			reserva.getFechaEntrada().toString(),
-        			reserva.getFechaSalida().toString(),
-        			""+reserva.getValor(),
-        			reserva.getFormaPago()
+        			""+huesped.getId(),
+        			huesped.getNombre(),
+        			huesped.getApellido(),
+        			huesped.getFechaNacimento().toString(),
+        			huesped.getNacionalidad(),
+        			huesped.getTelefono(),
+        			""+huesped.getIdReserva()
         			});
         });
 	}
