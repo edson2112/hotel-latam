@@ -305,8 +305,6 @@ public class ReservasView extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (ReservasView.txtFechaE.getDate() != null && ReservasView.txtFechaS.getDate() != null) {		
 					guardarReserva();
-					RegistroHuesped registro = new RegistroHuesped();
-					registro.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
 				}
@@ -346,15 +344,19 @@ public class ReservasView extends JFrame {
 	public void guardarReserva() {
 		try {
 			String fechaE = ((JTextField)txtFechaE.getDateEditor().getUiComponent()).getText();
-			String fechaS = ((JTextField)txtFechaE.getDateEditor().getUiComponent()).getText();
+			String fechaS = ((JTextField)txtFechaS.getDateEditor().getUiComponent()).getText();
 			Reserva reserva = new Reserva(
-					java.sql.Date.valueOf(fechaE), 
-					java.sql.Date.valueOf(fechaS),
-					Float.valueOf(txtValor.getText()),
-					txtFormaPago.getSelectedItem().toString());
-			JOptionPane.showConfirmDialog(contentPane, "Registro Creado");
+			java.sql.Date.valueOf(fechaE), 
+			java.sql.Date.valueOf(fechaS),
+			Float.valueOf(txtValor.getText()),
+			txtFormaPago.getSelectedItem().toString());
+			int registro_id = reservaController.guardar(reserva);
+			JOptionPane.showMessageDialog(null, "Registro Creado");
+			RegistroHuesped registro = new RegistroHuesped(registro_id);
+			registro.setVisible(true);
+			this.setVisible(false);
 		} catch (Exception e) {
-			JOptionPane.showConfirmDialog(contentPane, "Error: " + e.getMessage() + " Error");
+			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + " Error");
 		}
 	}
 

@@ -20,6 +20,15 @@ public class Huesped {
 		this.telefono = telefono;
 		this.reservaId = reservaId;
 	}
+	
+	public Huesped(String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono, Integer reservaId) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nacionalidad = nacionalidad;
+		this.telefono = telefono;
+		this.reservaId = reservaId;
+	}
 
 	public String getNombre() {
 		return this.nombre;

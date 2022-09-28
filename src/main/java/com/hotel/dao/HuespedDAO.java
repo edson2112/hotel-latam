@@ -18,7 +18,7 @@ public class HuespedDAO {
 		this.con = con;
 	}
 	
-	public void save(Huesped huesped) {
+	public void guardar(Huesped huesped) {
 		try {
 			PreparedStatement statement;
 			statement = con.prepareStatement(

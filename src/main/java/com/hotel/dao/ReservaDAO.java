@@ -18,12 +18,12 @@ public class ReservaDAO {
 		this.con = con;
 	}
 	
-	public void guardar(Reserva reserva) {
+	public int guardar(Reserva reserva) {
         try {
             PreparedStatement statement;
                 statement = con.prepareStatement(
                         "INSERT INTO RESERVA "
-                        + "(fecha_entrada, fecha_salida, valor, forma_pago"
+                        + "(fecha_entrada, fecha_salida, valor, forma_pago)"
                         + " VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
     
             try (statement) {
@@ -40,13 +40,14 @@ public class ReservaDAO {
                     while (resultSet.next()) {
                         reserva.setId(resultSet.getInt(1));
                         
-                        System.out.println(String.format("Fue insertado el producto: %s", reserva));
+                        System.out.println(String.format("Fue insertado la reserva: %s", reserva));
                     }
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return reserva.getId();
     }
 
     public List<Reserva> listar() {
