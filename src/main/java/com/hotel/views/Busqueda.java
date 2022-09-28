@@ -5,6 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import com.hotel.controller.HuespedController;
+import com.hotel.controller.ReservaController;
+import com.hotel.model.Reserva;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -19,6 +24,8 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Busqueda extends JFrame {
@@ -32,6 +39,9 @@ public class Busqueda extends JFrame {
 	private JLabel labelAtras;
 	private JLabel labelExit;
 	int xMouse, yMouse;
+	
+	private HuespedController huespedController;
+	private ReservaController reservaController;
 
 	/**
 	 * Launch the application.
@@ -53,6 +63,8 @@ public class Busqueda extends JFrame {
 	 * Create the frame.
 	 */
 	public Busqueda() {
+		this.huespedController = new HuespedController();
+		this.reservaController = new ReservaController();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Busqueda.class.getResource("/com/hotel/images/lupa2.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 571);
@@ -96,6 +108,7 @@ public class Busqueda extends JFrame {
 		modelo.addColumn("Fecha Check Out");
 		modelo.addColumn("Valor");
 		modelo.addColumn("Forma de Pago");
+		cargarReserva();
 		
 		
 		tbHuespedes = new JTable();
@@ -252,6 +265,32 @@ public class Busqueda extends JFrame {
 		setResizable(false);
 	}
 	
+	
+	public void cargarReserva() {
+		List<Reserva> contenido = reservaController.listar();
+		contenido.forEach(reserva ->{
+        	modelo.addRow(new Object[] {
+        			""+reserva.getId(),
+        			reserva.getFechaEntrada().toString(),
+        			reserva.getFechaSalida().toString(),
+        			""+reserva.getValor(),
+        			reserva.getFormaPago()
+        			});
+        });
+	}
+	
+	public void cargarHuesped() {
+		List<Reserva> contenido = huespedController.listar();
+		contenido.forEach(reserva ->{
+        	modelo.addRow(new Object[] {
+        			""+reserva.getId(),
+        			reserva.getFechaEntrada().toString(),
+        			reserva.getFechaSalida().toString(),
+        			""+reserva.getValor(),
+        			reserva.getFormaPago()
+        			});
+        });
+	}
 //Código que permite mover la ventana por la pantalla según la posición de "x" y "y"
 	 private void headerMousePressed(java.awt.event.MouseEvent evt) {
 	        xMouse = evt.getX();

@@ -1,5 +1,7 @@
 package com.hotel.controller;
 
+import java.util.List;
+
 import com.hotel.dao.HuespedDAO;
 import com.hotel.model.Huesped;
 
@@ -14,4 +16,8 @@ private HuespedDAO huespedDAO;
 	public void guardar(Huesped huesped) {
 		huespedDAO.guardar(huesped);
     }
+
+	public List<Huesped> listar() {
+		return huespedDAO.listar();
+	}
 }

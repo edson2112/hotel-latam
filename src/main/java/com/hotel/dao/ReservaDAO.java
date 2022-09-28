@@ -55,7 +55,7 @@ public class ReservaDAO {
 
         try {
             final PreparedStatement statement = con
-                    .prepareStatement("SELECT ID, FECHA_ENTRADA, FECHA_SALIDA, VALOR, FORMA_PAGO FROM HUESPED");
+                    .prepareStatement("SELECT ID, FECHA_ENTRADA, FECHA_SALIDA, VALOR, FORMA_PAGO FROM RESERVA");
     
             try (statement) {
                 statement.execute();
