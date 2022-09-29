@@ -82,7 +82,7 @@ public class ReservaDAO {
 
     public int eliminar(Integer id) {
         try {
-            final PreparedStatement statement = con.prepareStatement("DELETE FROM HUESPED WHERE ID = ?");
+            final PreparedStatement statement = con.prepareStatement("DELETE FROM RESERVA WHERE ID = ?");
 
             try (statement) {
                 statement.setInt(1, id);
@@ -97,10 +97,10 @@ public class ReservaDAO {
         }
     }
 
-    public int modificar(Date fechaEntrada, Date fechaSalida, Float valor, String formaPago, Integer id) {
+    public int modificar(Integer id, Date fechaEntrada, Date fechaSalida, Float valor, String formaPago) {
         try {
             final PreparedStatement statement = con.prepareStatement(
-                    "UPDATE PRODUCTO SET "
+                    "UPDATE RESERVA SET "
                     + " FECHA_ENTRADA = ?, "
                     + " FECHA_SALIDA = ?,"
                     + " VALOR = ?, "
@@ -112,7 +112,7 @@ public class ReservaDAO {
                 statement.setDate(2, fechaSalida);
                 statement.setFloat(3, valor);
                 statement.setString(4, formaPago);
-                statement.setInt(4, id);
+                statement.setInt(5, id);
                 statement.execute();
 
                 int updateCount = statement.getUpdateCount();

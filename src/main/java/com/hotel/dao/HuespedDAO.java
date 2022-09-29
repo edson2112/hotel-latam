@@ -96,7 +96,7 @@ public class HuespedDAO {
         }
 	}
 	
-	public int modificar(String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono, Integer idReserva, Integer id) {
+	public int modificar(Integer id, String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono, Integer idReserva) {
         try {
             final PreparedStatement statement = con.prepareStatement(
                     "UPDATE HUESPED SET "
@@ -115,6 +115,7 @@ public class HuespedDAO {
 				statement.setString(4, nacionalidad);
 				statement.setString(5, telefono);
 				statement.setInt(6,  idReserva);
+				statement.setInt(7,  id);
 				statement.execute();
 
                 int updateCount = statement.getUpdateCount();

@@ -1,5 +1,6 @@
 package com.hotel.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.hotel.dao.ReservaDAO;
@@ -23,6 +24,14 @@ public class ReservaController {
 	
 	public List<Reserva> listar(Integer id) {
 		return reservaDAO.listar(id);
+	}
+
+	public int modificar(Integer id, Date fechaE, Date fechaS, Float valor, String formaPago) {
+		return reservaDAO.modificar(id, fechaE, fechaS, valor, formaPago);
+	}
+
+	public int eliminar(Integer id) {
+		return reservaDAO.eliminar(id);
 	}
 	
 }

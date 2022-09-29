@@ -1,5 +1,6 @@
 package com.hotel.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.hotel.dao.HuespedDAO;
@@ -23,5 +24,14 @@ private HuespedDAO huespedDAO;
 
 	public List<Huesped> listar(String apellido) {
 		return huespedDAO.listar(apellido);
+	}
+
+	public int modificar(Integer id, String nombre, String apellido, Date fechaNacimiento, String nacionalidad,
+			String telefono, Integer reservaId) {
+		return huespedDAO.modificar(id, nombre, apellido, fechaNacimiento, nacionalidad, telefono, reservaId);
+	}
+
+	public int eliminar(Integer id) {
+		return huespedDAO.eliminar(id);
 	}
 }
