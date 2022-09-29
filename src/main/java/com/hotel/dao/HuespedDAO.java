@@ -125,4 +125,35 @@ public class HuespedDAO {
             throw new RuntimeException(e);
         }
     }
+
+	public List<Huesped> listar(String apellido) {
+		List<Huesped> resultado = new ArrayList<>();
+		try {
+            final PreparedStatement statement = con
+                    .prepareStatement("SELECT ID, NOMBRE, APELLIDO, FECHA_NACIMIENTO, NACIONALIDAD, TELEFONO, ID_RESERVA FROM HUESPED WHERE APELLIDO = ?");
+    
+            try (statement) {
+            	statement.setString(1, apellido);
+                statement.execute();
+    
+                final ResultSet resultSet = statement.getResultSet();
+    
+                try (resultSet) {
+                    while (resultSet.next()) {
+                        resultado.add(new Huesped(
+                                resultSet.getInt("ID"),
+                                resultSet.getString("NOMBRE"),
+                                resultSet.getString("APELLIDO"),
+                                resultSet.getDate("FECHA_NACIMIENTO"),
+                                resultSet.getString("NACIONALIDAD"),
+                                resultSet.getString("TELEFONO"),
+                                resultSet.getInt("ID_RESERVA")));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return resultado;
+	}
 }

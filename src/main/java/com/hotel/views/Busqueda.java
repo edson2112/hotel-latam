@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
@@ -109,7 +111,6 @@ public class Busqueda extends JFrame {
 		modelo.addColumn("Fecha Check Out");
 		modelo.addColumn("Valor");
 		modelo.addColumn("Forma de Pago");
-		cargarReserva();
 		
 		
 		tbHuespedes = new JTable();
@@ -220,7 +221,7 @@ public class Busqueda extends JFrame {
 		btnbuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				buscar(panel.getSelectedIndex());
 			}
 		});
 		btnbuscar.setLayout(null);
@@ -267,10 +268,25 @@ public class Busqueda extends JFrame {
 	}
 	
 	
-	public void cargarReserva() {
-		List<Reserva> contenido = reservaController.listar();
+	public void buscar(int tab) {
+		String data = this.txtBuscar.getText();
+		if (tab == 0) {
+			try {
+				cargarReserva(Integer.valueOf(data));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + " Error");
+			}
+		}
+		else {
+			cargarHuesped(data);
+		}
+	}
+	
+	public void cargarReserva(Integer id) {
+		this.modelo.setRowCount(0);
+		List<Reserva> contenido = reservaController.listar(id);
 		contenido.forEach(reserva ->{
-        	modelo.addRow(new Object[] {
+        	this.modelo.addRow(new Object[] {
         			""+reserva.getId(),
         			reserva.getFechaEntrada().toString(),
         			reserva.getFechaSalida().toString(),
@@ -280,10 +296,11 @@ public class Busqueda extends JFrame {
         });
 	}
 	
-	public void cargarHuesped() {
-		List<Huesped> contenido = huespedController.listar();
+	public void cargarHuesped(String apellido) {
+		this.modeloH.setRowCount(0);
+		List<Huesped> contenido = huespedController.listar(apellido);
 		contenido.forEach(huesped ->{
-        	modelo.addRow(new Object[] {
+        	this.modeloH.addRow(new Object[] {
         			""+huesped.getId(),
         			huesped.getNombre(),
         			huesped.getApellido(),

@@ -20,4 +20,8 @@ private HuespedDAO huespedDAO;
 	public List<Huesped> listar() {
 		return huespedDAO.listar();
 	}
+
+	public List<Huesped> listar(String apellido) {
+		return huespedDAO.listar(apellido);
+	}
 }

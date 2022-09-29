@@ -21,4 +21,8 @@ public class ReservaController {
 		return reservaDAO.listar();
 	}
 	
+	public List<Reserva> listar(Integer id) {
+		return reservaDAO.listar(id);
+	}
+	
 }
