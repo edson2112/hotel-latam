@@ -336,10 +336,9 @@ public class RegistroHuesped extends JFrame {
 			Integer id_reserva = Integer.valueOf(txtNreserva.getText());
 			Huesped huesped = new Huesped(nombre, apellido, java.sql.Date.valueOf(fechaN), nacionalidad, telefono, id_reserva);
 			huespedController.guardar(huesped);
-			JOptionPane.showMessageDialog(null, "Huesped Creado");
-			MenuUsuario menuUsuario = new MenuUsuario();
-			menuUsuario.setVisible(true);
-			this.setVisible(false);
+			Exito exito = new Exito();
+			exito.setVisible(true);
+			dispose();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + " Error");
 		}
