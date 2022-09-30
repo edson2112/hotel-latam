@@ -94,9 +94,7 @@ Por lo tanto, el proyecto debe contener los siguientes archivos después de las 
 
 ## 🎬 Video de demostración
 
-<p align="center" >
-    [![Alt text](https://img.youtube.com/vi/ggNGpgPYdAs/0.jpg)](https://www.youtube.com/watch?v=ggNGpgPYdAs)
-</p>
+[![Alt text](https://img.youtube.com/vi/ggNGpgPYdAs/0.jpg)](https://www.youtube.com/watch?v=ggNGpgPYdAs)
 
 🧡 <strong>Oracle</strong></br>
 <a href="https://www.linkedin.com/company/oracle/" target="_blank">
